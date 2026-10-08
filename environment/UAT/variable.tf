@@ -4,5 +4,5 @@ variable "subnet" {}
 variable "pip" {}
 variable "nsg" {}
 variable "nic" {}
-# variable "keyvault" {}
+variable "keyvault" {}
 variable "vms" {}
