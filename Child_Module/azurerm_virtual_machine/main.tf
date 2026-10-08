@@ -1,12 +1,17 @@
 resource "azurerm_linux_virtual_machine" "great-vm" {
-   for_each = var.vms
-  name                  = each.value.vms_name
-  resource_group_name   = each.value.resource
-  location              = each.value.location
+  for_each = var.vms
+
+  name                = each.value.vms_name
+  resource_group_name = each.value.resource
+  location            = each.value.location
   size                  = each.value.size
   admin_username        = each.value.admin_username
   admin_password        = each.value.admin_password
-  network_interface_ids = [data.azurerm_network_interface.great-nic[each.key].id]
+
+  network_interface_ids = [
+    var.nic_id[each.value.nic_key]
+  ]
+
   os_disk {
     caching              = each.value.caching
     storage_account_type = each.value.storage_account_type
@@ -18,5 +23,6 @@ resource "azurerm_linux_virtual_machine" "great-vm" {
     sku       = each.value.sku
     version   = each.value.version
   }
+
   disable_password_authentication = false
 }

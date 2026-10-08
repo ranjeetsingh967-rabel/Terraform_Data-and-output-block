@@ -1,1 +1,1 @@
-# variable "keyvault" {}
+variable "keyvault" {}

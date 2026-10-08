@@ -1,9 +1,13 @@
 resource "azurerm_network_security_group" "great-nsg" {
-  for_each            = var.nsg
+
+  for_each = var.nsg
+
   name                = each.value.nsg_name
   location            = each.value.location
   resource_group_name = each.value.resource
- security_rule {
+
+  security_rule {
+
     name                       = "test123"
     priority                   = 100
     direction                  = "Inbound"
